@@ -7,7 +7,7 @@ import requests
 from sentence_transformers import SentenceTransformer
 import pickle
 
-# ---------------- CONFIG ----------------
+#config
 FAISS_INDEX_PATH = "data/faiss.index"
 META_PATH = "data/faiss_meta.pkl"
 DB_PATH = "data/gold.duckdb"
@@ -35,12 +35,12 @@ con = duckdb.connect(DB_PATH, read_only=True)
 gold_df = con.execute("SELECT * FROM air_quality_cleaned").fetchdf()
 
 
-# ---------------- API Schema ----------------
+# API Schema
 class QueryRequest(BaseModel):
     q: str
 
 
-# ---------------- Hybrid Search ----------------
+# Hybrid Search
 def hybrid_search(query, top_k=3):
     # Vector search
     query_embedding = embed_model.encode([query]).astype("float32")
@@ -115,7 +115,7 @@ Give a short factual answer.
     return data["message"]["content"]
 
 
-# ---------------- API Endpoint ----------------
+# API Endpoint
 @app.post("/ask")
 def ask_question(req: QueryRequest):
     question = req.q
