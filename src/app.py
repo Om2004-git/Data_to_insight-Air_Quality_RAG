@@ -15,7 +15,7 @@ DB_PATH = "data/gold.duckdb"
 OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL = "mistral"   # make sure this is pulled: ollama pull mistral
 
-# ---------------------------------------
+
 
 app = FastAPI(title="Air Quality RAG API")
 
@@ -58,7 +58,7 @@ def hybrid_search(query, top_k=3):
     return vector_results, sql_results
 
 
-# ---------------- Context Builder ----------------
+# Context Builder
 def build_context(vector_results, sql_results):
     rows = []
     sources = []
@@ -79,7 +79,7 @@ def build_context(vector_results, sql_results):
     return context, sources
 
 
-# ---------------- LLM Call ----------------
+#  LLM Call 
 def call_ollama(context, question):
     prompt = f"""
 You are a data analyst assistant.
