@@ -1,0 +1,13 @@
+pyspark
+pandas
+duckdb
+great-expectations
+fastapi
+uvicorn
+sentence-transformers
+faiss-cpu
+requests
+delta-spark
+os
+pyarrow
+numpy
